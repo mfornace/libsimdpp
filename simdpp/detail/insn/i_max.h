@@ -277,7 +277,6 @@ uint32<N> i_max(const uint32<N>& a, const uint32<N>& b)
 
 // -----------------------------------------------------------------------------
 
-#if SIMDPP_USE_AVX512VL || SIMDPP_USE_AVX2 || SIMDPP_USE_NEON64 || SIMDPP_USE_VSX_207 || SIMDPP_USE_MSA || SIMDPP_USE_NULL || SIMDPP_USE_ALTIVEC
 static SIMDPP_INL
 int64x2 i_max(const int64x2& a, const int64x2& b)
 {
@@ -290,11 +289,10 @@ int64x2 i_max(const int64x2& a, const int64x2& b)
     return vec_max(a.native(), b.native());
 #elif SIMDPP_USE_MSA
     return __msa_max_s_d(a.native(), b.native());
-#elif SIMDPP_USE_NULL || SIMDPP_USE_ALTIVEC
+#else
     return detail::null::max(a, b);
 #endif
 }
-#endif
 
 #if SIMDPP_USE_AVX2
 static SIMDPP_INL
@@ -325,7 +323,6 @@ int64<N> i_max(const int64<N>& a, const int64<N>& b)
 
 // -----------------------------------------------------------------------------
 
-#if SIMDPP_USE_AVX512VL || SIMDPP_USE_AVX2 || SIMDPP_USE_NEON64 || SIMDPP_USE_VSX_207 || SIMDPP_USE_MSA || SIMDPP_USE_NULL || SIMDPP_USE_ALTIVEC
 static SIMDPP_INL
 uint64x2 i_max(const uint64x2& a, const uint64x2& b)
 {
@@ -338,11 +335,10 @@ uint64x2 i_max(const uint64x2& a, const uint64x2& b)
     return vec_max(a.native(), b.native());
 #elif SIMDPP_USE_MSA
     return __msa_max_u_d(a.native(), b.native());
-#elif SIMDPP_USE_NULL || SIMDPP_USE_ALTIVEC
+#else
     return detail::null::max(a, b);
 #endif
 }
-#endif
 
 #if SIMDPP_USE_AVX2
 static SIMDPP_INL
